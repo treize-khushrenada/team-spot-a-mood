@@ -1,7 +1,6 @@
 # team-spot-a-mood
 
 (some thoughts/ findings from Arthur)
-
 ## blog post outline:
 1. motivation and overview: Improve media curation experience with semantically sensitive recommendation algorithms
 2. recommender system: input/output relationships and ranking algorithm/ any related models and data
