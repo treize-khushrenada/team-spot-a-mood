@@ -1,0 +1,9 @@
+python==3.9
+tqdm
+numpy
+pandas
+matplotlib
+scikit-learn
+scipy
+streamlit
+sentence_transformers

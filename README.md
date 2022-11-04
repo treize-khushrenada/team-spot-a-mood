@@ -1,6 +1,22 @@
-# team-spot-a-mood
 
 
+# Team-Spot-A-Mood
+*Arthur Cho Ka Wai, Rodolfo Layedra, Poom Khorchitmate*
+This project is a part of data science capstone project at MADS, University of Michigan
+
+## Project Overview
+This project aims to provide song recommendations based on mood score and query to provide new musical experience to the users with the model being interfaced through streamlit. The project will rely on Information Retrieval System architecture based on similarity of the input provided by the user to the trained database of songs with the BERT model.
+
+## Project Architecture
+*Project status* **ACTIVE**
+![alt text](https://github.com/github/treize-khushrenada/team-spot-a-mood/blob/assets/cat.png) 
+
+## Getting Started
+To start learning more about our project with our app, run the following steps
+1. Clone this repository (for help, follow this [tutorial](https://help.github.com/articles/cloning-a-repository/))
+2. Raw data is being kept [here](https://drive.google.com/drive/u/0/folders/1SuxyMLJ0Y9wRp1tKfo0sMVleT8TqK2Mj)
+3. Create virtualenv  then run `pip install -r requirements.txt`
+4. To start the streamlit app run `streamlit run app.py`
 
 (some thoughts/ findings from Arthur)
 ## blog post outline:
