@@ -8,8 +8,9 @@ This project is a part of data science capstone project at MADS, University of M
 This project aims to provide song recommendations based on mood score and query to provide new musical experience to the users with the model being interfaced through streamlit. The project will rely on Information Retrieval System architecture based on similarity of the input provided by the user to the trained database of songs with the BERT model.
 
 ## Project Architecture
-*Project status* **ACTIVE**
-![Alt text](../../../../../../C:/Users/poomk/OneDrive/Desktop/songsdata/assets/Spot-A-Mood-Pipeline.png) 
+*Project status* **ACTIVE**\
+\
+![](assets/Spot-A-Mood-Pipeline.png)
 ## Getting Started
 To start learning more about our project with our app, run the following steps
 1. Clone this repository (for help, follow this [tutorial](https://help.github.com/articles/cloning-a-repository/))
