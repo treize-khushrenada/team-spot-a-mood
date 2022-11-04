@@ -9,7 +9,7 @@ This project aims to provide song recommendations based on mood score and query 
 
 ## Project Architecture
 *Project status* **ACTIVE**
-![Alt text](https://github.com/github/treize-khushrenada/team-spot-a-mood/blob/assets/cat.png) 
+![Alt text](https://github.com/github/treize-khushrenada/team-spot-a-mood/blob/assets/Spot-A-Mood-Pipeline.png) 
 ## Getting Started
 To start learning more about our project with our app, run the following steps
 1. Clone this repository (for help, follow this [tutorial](https://help.github.com/articles/cloning-a-repository/))
