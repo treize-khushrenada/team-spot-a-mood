@@ -18,7 +18,6 @@ To start learning more about our project with our app, run the following steps
 3. Create virtualenv  then run `pip install -r requirements.txt`
 4. To start the streamlit app run `streamlit run app.py`
 
-(some thoughts/ findings from Arthur)
 ## blog post outline:
 1. motivation and overview: Improve media curation experience with semantically sensitive recommendation algorithms
 2. recommender system: input/output relationships and ranking algorithm/ any related models and data
