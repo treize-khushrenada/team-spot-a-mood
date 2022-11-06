@@ -2,3 +2,5 @@ wasabi_songs.csv
 credential.py
 spotiscience
 .DS_Store
+.env
+.cache
