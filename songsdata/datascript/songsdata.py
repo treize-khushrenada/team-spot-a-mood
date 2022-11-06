@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import csv
 import time
@@ -71,19 +72,27 @@ def get_songs_features(uri_list):
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('../wasabi_songs.csv', sep='\t', engine='python')
-    df_chart = pd.read_csv('../charts.csv')
-    prep_df = df[(df.urlSpotify.notna())&(df.artist.isin(df_chart['artist']))]
-    uri_list_data = prep_df.urlSpotify.tolist()
-    # uri list of 186332
-    start, end, step = 0, 100000, 500
-    for i in range(start, end, step):
-        uri_list = uri_list_data[i: i+step]
-    # sample_uri = ['https://play.spotify.com/track/2FvLqe3wIQKPLmB4IAbi23']
-    # features_df = get_songs_features(sample_uri)
-        features_df = get_songs_features(uri_list)
-        features_df.to_csv(f'songsdata_{i}.csv', index= False, header=True)
-        time.sleep(15)
+    try:    
+        df = pd.read_csv('../../wasabi_songs.csv', sep='\t', engine='python')
+        df_chart = pd.read_csv('../../charts.csv')
+        prep_df = df[(df.urlSpotify.notna())&(df.artist.isin(df_chart['artist']))]
+        uri_list_data = prep_df.urlSpotify.tolist()
+        # uri list of 186332
+        start, end, step = 0, 100000, 500
+        for i in range(start, end, step):
+            uri_list = uri_list_data[i: i+step]
+        # sample_uri = ['https://play.spotify.com/track/2FvLqe3wIQKPLmB4IAbi23']
+        # features_df = get_songs_features(sample_uri)
+            features_df = get_songs_features(uri_list)
+            features_df.to_csv(f'../songsdata_{i}.csv', index= False, header=True)
+            time.sleep(15)
+
+    except KeyboardInterrupt:
+        print('Interrupted')
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)
     # print(features_df.lyrics)
 
 # columns = ['artist','title','danceability','energy','key',
