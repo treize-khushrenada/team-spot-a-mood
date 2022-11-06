@@ -8,13 +8,14 @@ import lyricsgenius as lg
 import numpy as np
 import pandas as pd
 
-import credential
+import dotenv
 from spotipy.oauth2 import SpotifyClientCredentials
 
 df = pd.read_csv('charts.csv')
+artists = sorted(set(df['artist']))
 
 
-# spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 genius = lg.Genius(os.environ['GENIUS_ACCESS_TOKEN'])
 
 # get songs' lyrics from artist
@@ -46,8 +47,22 @@ def get_data(artists_list):
 # for song in songs:
 # get the lyrics
 # spotipy search for song + artist to get the features
-
-
+# add info in the dict
+songs_list = []
+for artist in artists:
+    # search for artist id
+    artist_info = genius.search(artist)
+    artist_id = artist_info['hits'][0]['result']['primary_artist']['id']
+    # get songs list
+    songs = genius.artist_songs(artist_id)
+    for song in songs['songs']:
+        # filter only songs with that artist as a singer not composer
+        if song['artist_names'] == artist:
+            song_id = song['id']
+            song_title = song['title']
+            lyrics = genius.lyrics(song_id)
+            annotation = genius.song_annotations(song_id)
+            
 # name = 'ed sheeran'
 # track = 'bad habits'
 # result = spotify.search(q= f'artist: + {name}, track: + {track}', type='artist,track')

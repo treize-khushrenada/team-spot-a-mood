@@ -8,13 +8,15 @@ import lyricsgenius as lg
 import numpy as np
 import pandas as pd
 
-import credential
+from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyClientCredentials
 
 # export all the credentials to the local variables named SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET
 # SPOTIPY_REDIRECT_URL, GENIUS_ACCESS_TOKEN, SPOTIFY_USER_ID
 
 # scope = 'user-read-currently-playing'
+# get environmental credentials from .env file
+load_dotenv()
 
 def get_songs_features(uri_list):
     spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
@@ -50,16 +52,30 @@ def get_songs_features(uri_list):
                 lyrics = None
             # print(lyrics)
             songDict['lyrics'] = lyrics
+            song_id = song_info['id']
+            song_annotation = genius.song_annotations(song_id)
+            songDict['genius_id'] = song_id
+            songDict['annotation'] = song_annotation
         except:
             pass
         dict_list.append(songDict)
     df = pd.DataFrame.from_dict(dict_list)
     return df
-    
+
+# filtering chart artist from billboard data in charts.csv file
+# def filter(uri_list):
+#     song_chart = pd.read_csv('charts.csv')
+#     chart_artist = sorted(set(song_chart['artist']))
+#     final_uri = [uri for uri in uri_list if uri.isin(chart_artist)]
+#     return final_uri
+
+
 if __name__ == '__main__':
-    df = pd.read_csv('wasabi_songs.csv', sep='\t', engine='python')
-    prep_df = df[df.urlSpotify.notna()]
+    df = pd.read_csv('../wasabi_songs.csv', sep='\t', engine='python')
+    df_chart = pd.read_csv('../charts.csv')
+    prep_df = df[(df.urlSpotify.notna())&(df.artist.isin(df_chart['artist']))]
     uri_list_data = prep_df.urlSpotify.tolist()
+    # uri list of 186332
     start, end, step = 0, 100000, 500
     for i in range(start, end, step):
         uri_list = uri_list_data[i: i+step]
