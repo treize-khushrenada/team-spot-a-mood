@@ -4,3 +4,5 @@ spotiscience
 .DS_Store
 .env
 .cache
+songsdata/
+!songsdata/datascript
