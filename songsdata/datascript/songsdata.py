@@ -84,7 +84,7 @@ if __name__ == '__main__':
     prep_df = df[(df.urlSpotify.notna())&(df.artist.isin(df_chart['artist']))]
     uri_list_data = prep_df.urlSpotify.tolist()
     # uri list of 186332
-    start, end, step = 31000, 50000, 500
+    start, end, step = 42000, 50000, 500
     for i in range(start, end, step):
         uri_list = uri_list_data[i: i+step]
     # sample_uri = ['https://play.spotify.com/track/2FvLqe3wIQKPLmB4IAbi23']
