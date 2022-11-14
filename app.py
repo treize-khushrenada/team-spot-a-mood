@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 import numpy as np
-
+ 
 from PIL import Image
 from sentence_transformers import SentenceTransformer, util
 
