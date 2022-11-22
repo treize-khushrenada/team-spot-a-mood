@@ -22,6 +22,11 @@ st.sidebar.write('Mood Level:', mood_number*':smile:')
 
 # Text query
 query = st.sidebar.text_input('Please put your query here', placeholder='You are looking for songs related to?')
+# Image upload
+uploaded_image = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg'], accept_multiple_files=False)
+if uploaded_image is not None:
+    st.sidebar.image(uploaded_image, caption='uploaded image')
+#TODO @ARTHUR: logic to decide input + "search" button
 # st.sidebar.write('')
 
 # Main body
@@ -48,4 +53,5 @@ st.image(image, caption='Query embedding inside the songs clusters')
 # sample df
 st.subheader('Songs Recommendation')
 df = pd.read_csv('songsdata/songsdata_0.csv')
+#TODO @ARTHUR: results layouts https://docs.streamlit.io/library/api-reference/layout
 st.dataframe(df.sample(10))
