@@ -7,4 +7,4 @@ spotiscience
 .cache
 songsdata/
 !songsdata/datascript
-.csv
+cleaned_songs.csv
