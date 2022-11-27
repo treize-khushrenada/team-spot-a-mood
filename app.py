@@ -1,10 +1,17 @@
 import streamlit as st
+from st_aggrid import AgGrid, GridUpdateMode
+from st_aggrid.grid_options_builder import GridOptionsBuilder
+
 import joblib
+import pickle
+
 import pandas as pd
 import numpy as np
- 
+
 from PIL import Image
 from sentence_transformers import SentenceTransformer, util
+
+import songs_rec
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
@@ -24,12 +31,38 @@ mood_number = st.sidebar.select_slider('Choose your happiness level',
 st.sidebar.write('Mood Level:', mood_number*':smile:')
 
 # Text query
-query = st.sidebar.text_input('Please put your query here', placeholder='You are looking for songs related to?')
+text_input = st.sidebar.text_input('Please put your query here', placeholder='You are looking for songs related to?')
+query = text_input
 # Image upload
-uploaded_image = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg'], accept_multiple_files=False)
-if uploaded_image is not None:
-    st.sidebar.image(uploaded_image, caption='uploaded image')
+image_input = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg'], accept_multiple_files=False)
+if image_input is not None:
+    st.sidebar.image(image_input, caption='uploaded image')
+if text_input is not None:
+    # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
+    with open('./pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+        l_pickle = pickle.load(f)
+
+    sample_artists_set = l_pickle[0]
+    lyrics_set = l_pickle[1]
+
+    # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
+    with open('./pickle_objects/embeddings_indices.obj', 'rb') as f:
+        l_pickle = pickle.load(f)
+
+    embeddings = l_pickle[0]
+    arr_song_idx = l_pickle[1] 
+    arr_lyrics_idx = l_pickle[2]
+
+    results = songs_rec.main(text_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx)
+    df = pd.DataFrame(results)
+    df_results = df[['song title', 'artist', 'song_score']]
+
 #TODO @ARTHUR: logic to decide input + "search" button
+#else:
+    
+    #df = pd.read_csv('songsdata/songsdata_0.csv')
+
+    
 # st.sidebar.write('')
 
 # Main body
@@ -53,8 +86,27 @@ image = Image.open('assets/Clustering.png')
 st.image(image, caption='Query embedding inside the songs clusters')
 
 # Songs recommendation list
-# sample df
-st.subheader('Songs Recommendation')
-df = pd.read_csv('songsdata/songsdata_0.csv')
-#TODO @ARTHUR: results layouts https://docs.streamlit.io/library/api-reference/layout
-st.dataframe(df.sample(10))
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.subheader('Songs Recommendation')
+
+    gd = GridOptionsBuilder.from_dataframe(df_results)
+    gd.configure_selection(selection_mode='single', pre_selected_rows=[0], use_checkbox=False)
+    gridoptions = gd.build()
+
+    grid_table = AgGrid(df_results, height=400, width=100, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED, fit_columns_on_grid_load=True)
+with col2:
+    st.subheader('Relevant Lyrics')
+    selected_row = grid_table["selected_rows"]
+    if selected_row is not None:
+        
+        try:
+            selected_row_index = selected_row[0]['_selectedRowNodeInfo']['nodeRowIndex']
+            dic_lyrics_results = df['lyrics_scores'].iloc[int(selected_row_index)]
+            for key in dic_lyrics_results.keys():
+                original_title = '<p style="font-size: {0}px;">{1}</p>'.format(str(48*float(dic_lyrics_results[key])), key)
+                st.markdown(original_title, unsafe_allow_html=True)
+        except:
+
+            pass
+    
