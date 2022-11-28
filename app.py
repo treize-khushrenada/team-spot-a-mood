@@ -75,15 +75,15 @@ st.subheader("Your query vector representation via BERT")
 st.markdown('This might take a couple of minutes during your first run of this model')
 
 # SBERT Sentence Transformer
-model = SentenceTransformer('all-MiniLM-L6-v2')
-embeddings = model.encode(query)
-with st.expander("Click to See Query Vector"):
-    st.write(embeddings)
+# model = SentenceTransformer('all-MiniLM-L6-v2')
+# embeddings = model.encode(query)
+# with st.expander("Click to See Query Vector"):
+#     st.write(embeddings)
 
 # Query embedding inside the song cluster visualization
 # sample pic
-image = Image.open('assets/Clustering.png')
-st.image(image, caption='Query embedding inside the songs clusters')
+# image = Image.open('assets/Clustering.png')
+# st.image(image, caption='Query embedding inside the songs clusters')
 
 # Songs recommendation list
 col1, col2 = st.columns([2, 1])
