@@ -46,11 +46,14 @@ def songs_ranking(df_results_lyrics_mapped):
     return res
 
 # Combine songs information to ranked songs
-def combine_songs_info(s_songs_ranking, sample_artists_set, results_limit = 10):
+def combine_songs_info(s_songs_ranking, sample_artists_set, valence_range, results_limit = 10):
     df_songs_candidates = sample_artists_set.filter(items = s_songs_ranking.index, axis=0)
     df_songs_candidates['score'] = s_songs_ranking
     df_songs_candidates['song_idx'] = s_songs_ranking
-    res_df = df_songs_candidates[['artist', 'title', 'score']][:10]
+    valence_min = valence_range[0]
+    valence_max = valence_range[1]
+    df_songs_candidates = df_songs_candidates[df_songs_candidates['valence'].between(valence_min, valence_max)]
+    res_df = df_songs_candidates[['artist', 'title', 'score']][:results_limit]
     return res_df
 
 # Helper function to support getting songs/ lyrics results
@@ -79,17 +82,17 @@ def similar_songs_lyrics_ranked(df_results_songs, df_results_lyrics_mapped):
     return result_list
 
 # Overall function to generate songs ranking based on lyrics lines semantic textual similarity 
-def similar_songs_ranked(user_input, embeddings, sample_artists_set, lyrics_set, arr_song_idx):
+def similar_songs_ranked(user_input, embeddings, sample_artists_set, lyrics_set, arr_song_idx, valence_range):
     df_results_lyrics = text_get_similar_lyrics_lines(user_input, embeddings, lyrics_set)
     df_results_lyrics_mapped = lyrics_id_mapping(df_results_lyrics, arr_song_idx)
     df_results_lyrics_mapped = score_low_sim_weighting(df_results_lyrics_mapped)
     s_songs_ranking = songs_ranking(df_results_lyrics_mapped)
-    df_results_songs = combine_songs_info(s_songs_ranking, sample_artists_set)
+    df_results_songs = combine_songs_info(s_songs_ranking, sample_artists_set, valence_range)
     return df_results_songs, df_results_lyrics_mapped
 
 # Main Function to return songs/lyrics ranking 
-def main(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx):
-    df_results_songs, df_results_lyrics_mapped = similar_songs_ranked(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx)
+def main(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range):
+    df_results_songs, df_results_lyrics_mapped = similar_songs_ranked(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range)
     result = similar_songs_lyrics_ranked(df_results_songs, df_results_lyrics_mapped)
     
     return result

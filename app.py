@@ -25,10 +25,13 @@ st.sidebar.markdown('You can adjust your mood and \
                     text query below to receive out playlist')
 
 # Mood range
-mood_range = range(0,11)
-mood_number = st.sidebar.select_slider('Choose your happiness level',
-    options=mood_range, value=5)
-st.sidebar.write('Mood Level:', mood_number*':smile:')
+#mood_range = range(0,11)
+#mood_number = st.sidebar.select_slider('Choose your happiness level',
+    #options=mood_range, value=5)
+#st.sidebar.write('Mood Level:', mood_number*':smile:')
+
+# valence_range
+valence_range = st.sidebar.slider('Choose your happiness level',0, 10, (0, 10))
 
 # Text query
 text_input = st.sidebar.text_input('Please put your query here', placeholder='You are looking for songs related to?')
@@ -53,7 +56,11 @@ if text_input is not None:
     arr_song_idx = l_pickle[1] 
     arr_lyrics_idx = l_pickle[2]
 
-    results = songs_rec.main(text_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx)
+    valence_min = valence_range[0]/10
+    valence_max = valence_range[1]/10
+            
+    results = songs_rec.main(text_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, [valence_min, valence_max])
+
     df = pd.DataFrame(results)
     df_results = df[['song title', 'artist', 'song_score']]
 
@@ -109,4 +116,3 @@ with col2:
         except:
 
             pass
-    
