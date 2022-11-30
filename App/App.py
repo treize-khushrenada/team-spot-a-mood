@@ -4,7 +4,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 import joblib
 import pickle
-import os
+from pathlib import Path
 
 import pandas as pd
 import numpy as np
@@ -14,7 +14,7 @@ from sentence_transformers import SentenceTransformer, util
 
 import songs_rec
 
-PARENT_PATH = os.path.abspath('..')
+PARENT_PATH = Path(__file__).parent.parent
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
