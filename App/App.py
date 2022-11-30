@@ -4,7 +4,6 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 import joblib
 import pickle
-from pathlib import Path
 
 import pandas as pd
 import numpy as np
@@ -14,14 +13,11 @@ from sentence_transformers import SentenceTransformer, util
 
 import songs_rec
 
-PARENT_PATH = Path(__file__).parent.parent
-
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
 
 # Project title 
 st.title('Spot-A-Mood Playlist Recommendation')
-st.markdown(PARENT_PATH)
 # Sidebar
 st.sidebar.header('Explain your mood')
 st.sidebar.markdown('You can adjust your mood and \
@@ -44,7 +40,7 @@ image_input = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg']
 if image_input is not None:
     st.sidebar.image(image_input, caption='uploaded image')
 if text_input is not None:
-    with open('/team-spot-a-mood/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+    with open('pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
         l_pickle = pickle.load(f)
     
     # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
@@ -55,7 +51,7 @@ if text_input is not None:
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    with open(PARENT_PATH+ '/pickle_objects/embeddings_indices.obj', 'rb') as f:
+    with open('pickle_objects/embeddings_indices.obj', 'rb') as f:
         l_pickle = pickle.load(f)
 
     embeddings = l_pickle[0]
