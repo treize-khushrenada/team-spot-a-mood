@@ -42,14 +42,14 @@ if image_input is not None:
     st.sidebar.image(image_input, caption='uploaded image')
 if text_input is not None:
     # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
-    with open('pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+    with open('../pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
         l_pickle = pickle.load(f)
 
     sample_artists_set = l_pickle[0]
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    with open('pickle_objects/embeddings_indices.obj', 'rb') as f:
+    with open('../pickle_objects/embeddings_indices.obj', 'rb') as f:
         l_pickle = pickle.load(f)
 
     embeddings = l_pickle[0]

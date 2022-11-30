@@ -10,3 +10,4 @@ songsdata/
 cleaned_songs.csv
 pickle_objects/
 __pycache__
+charts.csv
