@@ -61,9 +61,9 @@ if text_input is not None:
     #with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
         #l_pickle = pickle.load(f)
 
-    embeddings = l_pickle[0]
-    arr_song_idx = l_pickle[1] 
-    arr_lyrics_idx = l_pickle[2]
+    #embeddings = l_pickle[0]
+    #arr_song_idx = l_pickle[1] 
+    #arr_lyrics_idx = l_pickle[2]
 
     embeddings, arr_song_idx, arr_lyrics_idx = load_embeddings()
 
