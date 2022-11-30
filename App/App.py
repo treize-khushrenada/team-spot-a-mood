@@ -15,6 +15,15 @@ from sentence_transformers import SentenceTransformer, util
 import songs_rec
 path = os.path.dirname(__file__)
 
+@st.cache
+def load_embeddings():
+
+    with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
+        l_pickle = pickle.load(f)
+        
+    
+    return l_pickle[0], l_pickle[1], l_pickle[2]
+
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
 
@@ -44,21 +53,19 @@ if image_input is not None:
 if text_input is not None:
     with open(path + '/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
         l_pickle = pickle.load(f)
-    
-    # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
-    #with open(PARENT_PATH+ '/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
-        #l_pickle = pickle.load(f)
 
     sample_artists_set = l_pickle[0]
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
-        l_pickle = pickle.load(f)
+    #with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
+        #l_pickle = pickle.load(f)
 
     embeddings = l_pickle[0]
     arr_song_idx = l_pickle[1] 
     arr_lyrics_idx = l_pickle[2]
+
+    embeddings, arr_song_idx, arr_lyrics_idx = load_embeddings()
 
     valence_min = valence_range[0]/10
     valence_max = valence_range[1]/10
