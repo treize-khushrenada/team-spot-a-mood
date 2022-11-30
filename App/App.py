@@ -21,7 +21,7 @@ st.sidebar.markdown("# Home")
 
 # Project title 
 st.title('Spot-A-Mood Playlist Recommendation')
-
+st.markdown(PARENT_PATH)
 # Sidebar
 st.sidebar.header('Explain your mood')
 st.sidebar.markdown('You can adjust your mood and \
