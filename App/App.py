@@ -17,12 +17,21 @@ path = os.path.dirname(__file__)
 
 @st.cache
 def load_embeddings():
+    with open(path + '/pickle_objects/embeddings.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
 
-    with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
-        l_pickle = pickle.load(f)
-        
-    
-    return l_pickle[0], l_pickle[1], l_pickle[2]
+@st.cache
+def load_arr_song_idx():
+    with open(path + '/pickle_objects/arr_song_idx.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
+
+@st.cache
+def load_arr_lyrics_idx():
+    with open(path + '/pickle_objects/arr_lyrics_idx.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
@@ -65,7 +74,9 @@ if text_input is not None:
     #arr_song_idx = l_pickle[1] 
     #arr_lyrics_idx = l_pickle[2]
 
-    embeddings, arr_song_idx, arr_lyrics_idx = load_embeddings()
+    embeddings = load_embeddings()
+    arr_song_idx = load_arr_song_idx()
+    arr_lyrics_idx = load_arr_lyrics_idx()
 
     valence_min = valence_range[0]/10
     valence_max = valence_range[1]/10
