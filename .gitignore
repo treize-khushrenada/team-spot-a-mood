@@ -8,3 +8,6 @@ spotiscience
 songsdata/
 !songsdata/datascript
 cleaned_songs.csv
+pickle_objects/
+__pycache__
+charts.csv
