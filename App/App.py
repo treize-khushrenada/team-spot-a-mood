@@ -4,6 +4,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 import joblib
 import pickle
+import os
 
 import pandas as pd
 import numpy as np
@@ -12,13 +13,31 @@ from PIL import Image
 from sentence_transformers import SentenceTransformer, util
 
 import songs_rec
+path = os.path.dirname(__file__)
+
+@st.cache
+def load_embeddings():
+    with open(path + '/pickle_objects/embeddings.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
+
+@st.cache
+def load_arr_song_idx():
+    with open(path + '/pickle_objects/arr_song_idx.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
+
+@st.cache
+def load_arr_lyrics_idx():
+    with open(path + '/pickle_objects/arr_lyrics_idx.obj', 'rb') as f:
+        obj = pickle.load(f)
+    return obj
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
 
 # Project title 
 st.title('Spot-A-Mood Playlist Recommendation')
-
 # Sidebar
 st.sidebar.header('Explain your mood')
 st.sidebar.markdown('You can adjust your mood and \
@@ -41,20 +60,23 @@ image_input = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg']
 if image_input is not None:
     st.sidebar.image(image_input, caption='uploaded image')
 if text_input is not None:
-    # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
-    with open('../pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+    with open(path + '/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
         l_pickle = pickle.load(f)
 
     sample_artists_set = l_pickle[0]
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    with open('../pickle_objects/embeddings_indices.obj', 'rb') as f:
-        l_pickle = pickle.load(f)
+    #with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
+        #l_pickle = pickle.load(f)
 
-    embeddings = l_pickle[0]
-    arr_song_idx = l_pickle[1] 
-    arr_lyrics_idx = l_pickle[2]
+    #embeddings = l_pickle[0]
+    #arr_song_idx = l_pickle[1] 
+    #arr_lyrics_idx = l_pickle[2]
+
+    embeddings = load_embeddings()
+    arr_song_idx = load_arr_song_idx()
+    arr_lyrics_idx = load_arr_lyrics_idx()
 
     valence_min = valence_range[0]/10
     valence_max = valence_range[1]/10
