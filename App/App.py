@@ -4,6 +4,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 import joblib
 import pickle
+import os
 
 import pandas as pd
 import numpy as np
@@ -12,6 +13,7 @@ from PIL import Image
 from sentence_transformers import SentenceTransformer, util
 
 import songs_rec
+path = os.path.dirname(__file__)
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
@@ -40,7 +42,7 @@ image_input = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg']
 if image_input is not None:
     st.sidebar.image(image_input, caption='uploaded image')
 if text_input is not None:
-    with open('/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+    with open(path + '/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
         l_pickle = pickle.load(f)
     
     # PLEASE REFER TO preprocessing.ipynb FOR PREPROCESSING STEP
