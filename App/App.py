@@ -53,7 +53,7 @@ if text_input is not None:
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    with open('/pickle_objects/embeddings_indices.obj', 'rb') as f:
+    with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
         l_pickle = pickle.load(f)
 
     embeddings = l_pickle[0]
