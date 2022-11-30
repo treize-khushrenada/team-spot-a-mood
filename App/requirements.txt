@@ -1,0 +1,12 @@
+tqdm
+numpy
+pandas
+matplotlib
+scikit-learn
+scipy
+streamlit
+sentence_transformers
+genius
+spotipy
+python-dotenv
+streamlit-aggrid
