@@ -2,9 +2,10 @@ tqdm
 numpy
 pandas
 matplotlib
+nltk
 scikit-learn
 scipy
-streamlit
+streamlit==1.10.0
 sentence_transformers
 # lyricsgenius
 # spotipy

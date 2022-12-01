@@ -6,7 +6,7 @@ scikit-learn
 scipy
 streamlit
 sentence_transformers
-genius
+lyricsgenius
 spotipy
 python-dotenv
 streamlit-aggrid
