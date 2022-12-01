@@ -15,23 +15,28 @@ from sentence_transformers import SentenceTransformer, util
 import songs_rec
 path = os.path.dirname(__file__)
 
-# @st.cache
+@st.cache
 def load_embeddings():
-    with open(path + '/pickle_objects/embeddings.obj', 'rb') as f:
+    with open(path + '/pickle_objects/embeddings.pickle', 'rb') as f:
         obj = pickle.load(f)
     return obj
 
-# @st.cache
+@st.cache
 def load_arr_song_idx():
-    with open(path + '/pickle_objects/arr_song_idx.obj', 'rb') as f:
+    with open(path + '/pickle_objects/arr_song_idx.pickle', 'rb') as f:
         obj = pickle.load(f)
     return obj
 
-# @st.cache
+@st.cache
 def load_arr_lyrics_idx():
-    with open(path + '/pickle_objects/arr_lyrics_idx.obj', 'rb') as f:
+    with open(path + '/pickle_objects/arr_lyrics_idx.pickle', 'rb') as f:
         obj = pickle.load(f)
     return obj
+
+#@st.cache
+def load_model(model_name = "all-distilroberta-v1"):
+    model = SentenceTransformer(model_name)
+    return model
 
 st.markdown("# Home")
 st.sidebar.markdown("# Home")
@@ -60,14 +65,14 @@ image_input = st.sidebar.file_uploader("Or upload an image", type=['.png','jpg']
 if image_input is not None:
     st.sidebar.image(image_input, caption='uploaded image')
 if text_input is not None:
-    with open(path + '/pickle_objects/sample_song_lyrics_set.obj', 'rb') as f:
+    with open(path + '/pickle_objects/sample_song_lyrics_set.pickle', 'rb') as f:
         l_pickle = pickle.load(f)
 
     sample_artists_set = l_pickle[0]
     lyrics_set = l_pickle[1]
 
     # PLEASE REFER TO get_embeddings.ipynb FOR EMBEDDINGS GENERATION STEP
-    #with open(path + '/pickle_objects/embeddings_indices.obj', 'rb') as f:
+    #with open(path + '/pickle_objects/embeddings_indices.pickle', 'rb') as f:
         #l_pickle = pickle.load(f)
 
     #embeddings = l_pickle[0]
@@ -80,8 +85,10 @@ if text_input is not None:
 
     valence_min = valence_range[0]/10
     valence_max = valence_range[1]/10
+
+    model = load_model()
             
-    results = songs_rec.main(text_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, [valence_min, valence_max])
+    results = songs_rec.main(text_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, [valence_min, valence_max], model)
 
     df = pd.DataFrame(results)
     df_results = df[['song title', 'artist', 'song_score']]

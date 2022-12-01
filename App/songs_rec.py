@@ -16,8 +16,7 @@ from sentence_transformers import SentenceTransformer, util
 # Helper functions to main ranking function
 
 # Get closest lyrics lines matches from user text input
-def text_get_similar_lyrics_lines(user_text_input, embeddings, arr_lyrics_idx, model_name = "all-distilroberta-v1"):
-    model = SentenceTransformer(model_name)
+def text_get_similar_lyrics_lines(user_text_input, embeddings, arr_lyrics_idx, model):
     input_emb = model.encode(user_text_input, convert_to_tensor=True)
     res_cos_sim = util.semantic_search(input_emb, embeddings, score_function=util.cos_sim, top_k=100)
     # Convert results and mapped lyrics id as pd dataframe
@@ -82,8 +81,8 @@ def similar_songs_lyrics_ranked(df_results_songs, df_results_lyrics_mapped):
     return result_list
 
 # Overall function to generate songs ranking based on lyrics lines semantic textual similarity 
-def similar_songs_ranked(user_input, embeddings, sample_artists_set, lyrics_set, arr_song_idx, valence_range):
-    df_results_lyrics = text_get_similar_lyrics_lines(user_input, embeddings, lyrics_set)
+def similar_songs_ranked(user_input, embeddings, sample_artists_set, lyrics_set, arr_song_idx, valence_range, model):
+    df_results_lyrics = text_get_similar_lyrics_lines(user_input, embeddings, lyrics_set, model)
     df_results_lyrics_mapped = lyrics_id_mapping(df_results_lyrics, arr_song_idx)
     df_results_lyrics_mapped = score_low_sim_weighting(df_results_lyrics_mapped)
     s_songs_ranking = songs_ranking(df_results_lyrics_mapped)
@@ -91,8 +90,8 @@ def similar_songs_ranked(user_input, embeddings, sample_artists_set, lyrics_set,
     return df_results_songs, df_results_lyrics_mapped
 
 # Main Function to return songs/lyrics ranking 
-def main(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range):
-    df_results_songs, df_results_lyrics_mapped = similar_songs_ranked(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range)
+def main(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range, model):
+    df_results_songs, df_results_lyrics_mapped = similar_songs_ranked(user_input, embeddings, sample_artists_set, arr_lyrics_idx, arr_song_idx, valence_range, model)
     result = similar_songs_lyrics_ranked(df_results_songs, df_results_lyrics_mapped)
     
     return result
