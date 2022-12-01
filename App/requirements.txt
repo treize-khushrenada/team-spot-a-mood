@@ -2,12 +2,11 @@ tqdm
 numpy
 pandas
 matplotlib
-nltk
 scikit-learn
 scipy
-streamlit==1.10.0
+streamlit
 sentence_transformers
-# lyricsgenius
-# spotipy
+genius
+spotipy
 python-dotenv
 streamlit-aggrid
