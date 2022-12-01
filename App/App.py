@@ -15,19 +15,19 @@ from sentence_transformers import SentenceTransformer, util
 import songs_rec
 path = os.path.dirname(__file__)
 
-@st.cache
+# @st.cache
 def load_embeddings():
     with open(path + '/pickle_objects/embeddings.obj', 'rb') as f:
         obj = pickle.load(f)
     return obj
 
-@st.cache
+# @st.cache
 def load_arr_song_idx():
     with open(path + '/pickle_objects/arr_song_idx.obj', 'rb') as f:
         obj = pickle.load(f)
     return obj
 
-@st.cache
+# @st.cache
 def load_arr_lyrics_idx():
     with open(path + '/pickle_objects/arr_lyrics_idx.obj', 'rb') as f:
         obj = pickle.load(f)
