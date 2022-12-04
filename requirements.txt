@@ -2,6 +2,7 @@ tqdm
 numpy
 pandas
 matplotlib
+seaborn
 scikit-learn
 scipy
 streamlit
@@ -10,3 +11,4 @@ lyricsgenius
 spotipy
 python-dotenv
 streamlit-aggrid
+yellowbrick

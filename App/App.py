@@ -141,8 +141,6 @@ with st.container():
     #options=mood_range, value=5)
 #st.sidebar.write('Mood Level:', mood_number*':smile:')
 
-
-
 # SBERT Sentence Transformer
 # model = SentenceTransformer('all-MiniLM-L6-v2')
 # embeddings = model.encode(query)
