@@ -69,6 +69,12 @@ def load_sampling_cluster():
         df = pickle.load(f)
     return df
 
+@st.cache(show_spinner=False)
+def load_pca():
+    with open(path + '/pickle_objects/pca_model.pickle', 'rb') as f:
+        pca = pickle.load(f)
+    return pca    
+
 def load_model(model_name = "all-distilroberta-v1"):
     model = SentenceTransformer(model_name)
 
@@ -126,8 +132,9 @@ def load_results_txt(query):
 
 def query_pca(query, model):
     input_emb = model.encode(query, convert_to_tensor=True)
-    pca = PCA(n_components=2)
-    pca_df = pd.DataFrame(pca.fit(input_emb), columns=['component1', 'component2'])
+    input_emb = input_emb.reshape(1,-1)
+    pca = load_pca()
+    pca_df = pd.DataFrame(pca.transform(input_emb), columns=['component1', 'component2'])
     pca_df['query'] = query
     return pca_df
 
@@ -179,13 +186,14 @@ if text_input not in ["", None]:
         tooltip=['lyrics', 'cluster']
     )
     # encode query
-    query_chart = alt.Charts(query_df).mark_square(size=80, color='red').encode(
+    query_chart = alt.Chart(query_df).mark_square(size=80, color='red').encode(
         x=alt.X('component1:Q'),
         y=alt.Y('component2:Q'),
-        tooltip=['query']
+        tooltip='query'
     )
     # display 2 charts layer on each other
-    (embeddings_cluster_chart+query_chart).interactive()
+    chart = (embeddings_cluster_chart+query_chart).interactive()
+    st.altair_chart(chart, use_container_width=True)
 
 ## Image upload
 #with st.form("input_form", clear_on_submit=True):
