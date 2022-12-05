@@ -8,11 +8,16 @@ import os
 
 import pandas as pd
 import numpy as np
+import altair as alt
 
 from PIL import Image
 from sentence_transformers import SentenceTransformer, util
 
+from sklearn.decomposition import PCA
+
+
 import songs_rec
+
 path = os.path.dirname(__file__)
 st.set_page_config(page_title="Spotamood - App")
 
@@ -57,6 +62,12 @@ def load_sample_artists_set():
     with open(path + '/pickle_objects/sample_song_lyrics_set.pickle', 'rb') as f:
         obj = pickle.load(f)
     return obj[0]
+
+@st.cache(show_spinner=False)
+def load_sampling_cluster():
+    with open(path + '/pickle_objects/sampling_cluster.pickle', 'rb') as f:
+        df = pickle.load(f)
+    return df
 
 def load_model(model_name = "all-distilroberta-v1"):
     model = SentenceTransformer(model_name)
@@ -112,6 +123,15 @@ def load_results_txt(query):
     df = pd.DataFrame(results)
     df_results = df[['song title', 'artist', 'song_score']]
     return df, df_results
+
+def query_pca(query, model):
+    input_emb = model.encode(query, convert_to_tensor=True)
+    pca = PCA(n_components=2)
+    pca_df = pd.DataFrame(pca.fit(input_emb), columns=['component1', 'component2'])
+    pca_df['query'] = query
+    return pca_df
+
+
 #Visuals - text search results
 if text_input not in ["", None]:
     query =  text_input
@@ -146,6 +166,26 @@ if text_input not in ["", None]:
                 except:
 
                     pass
+    # Chart Display Cluster and Query Results
+    st.subheader('Embeddings Clusters')
+    # load embeddings PCA results
+    sampling_df = load_sampling_cluster()
+    query_df = query_pca(query, model)
+    # encode charts
+    embeddings_cluster_chart = alt.Chart(sampling_df).mark_circle().encode(
+        x=alt.X('component1:Q'),
+        y=alt.Y('component2:Q'),
+        color=alt.Color('cluster:O', scale=alt.Scale(scheme='tableau10')),
+        tooltip=['lyrics', 'cluster']
+    )
+    # encode query
+    query_chart = alt.Charts(query_df).mark_square(size=80, color='red').encode(
+        x=alt.X('component1:Q'),
+        y=alt.Y('component2:Q'),
+        tooltip=['query']
+    )
+    # display 2 charts layer on each other
+    (embeddings_cluster_chart+query_chart).interactive()
 
 ## Image upload
 #with st.form("input_form", clear_on_submit=True):
@@ -196,3 +236,5 @@ if image_input is not None:
             else:
                 st.write('')
                 #st.write('no results selected')
+
+    
