@@ -11,4 +11,4 @@ cleaned_songs.csv
 ./pickle_objects
 __pycache__
 charts.csv
-pickle_objects/
+#pickle_objects/
