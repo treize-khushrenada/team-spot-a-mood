@@ -1,5 +1,3 @@
-
-
 # Team-Spot-A-Mood
 *Arthur Cho Ka Wai, Rodolfo Layedra, Poom Khorchitmate*\
 This project is a part of data science capstone project at MADS, University of Michigan
@@ -30,7 +28,7 @@ Our recommendation generation components and related visualizations will be inte
 [(Back to top)](#table-of-contents)
 *Project status* **ACTIVE**\
 \
-![](assets/Spot-A-Mood-Pipeline.png)
+![](App_stcloud/assets/Spot-A-Mood-Pipeline.png)
 ## Getting Started
 [(Back to top)](#table-of-contents)
 To start learning more about our project with our app, run the following steps

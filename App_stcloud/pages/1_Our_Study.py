@@ -15,9 +15,39 @@ boxplot = Image.open(os.path.join(path,'..','assets','boxplot.png'))
 pairplot = Image.open(os.path.join(path,'..','assets','pairplot.png'))
 elbowplot = Image.open(os.path.join(path,'..','assets','elbow-plot.png'))
 cluster = Image.open(os.path.join(path,'..','assets','cluster.png'))
-# display images
-st.image(boxplot, caption='Songs Attributes')
 
-st.image(pairplot, caption='Attributes Pairplot') 
-st.image(elbowplot, caption='Elbow Plot')
-st.image(cluster, caption='Embeddings Cluster')
+# attributes
+# text display from markdown files
+with open(os.path.join(path,'songs_attributes.md')) as f:
+    songs_attributes = f.read()
+st.markdown(songs_attributes)
+
+# display images
+with st.container():
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image(boxplot, caption='Songs Attributes')
+    with col2:
+        st.image(pairplot, caption='Attributes Pairplot') 
+
+# clustering
+with open(os.path.join(path,'clustering.md')) as f:
+    clustering = f.read()
+st.markdown(clustering)
+
+# display images
+with st.container():
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image(elbowplot, caption='Elbow Plot')
+    with col2:
+        st.image(cluster, caption='Embeddings Cluster')
+
+# results of our model evaluation
+with open(os.path.join(path,'evaluation.md')) as f:
+    evaluation = f.read()
+st.markdown(evaluation)
+
+
