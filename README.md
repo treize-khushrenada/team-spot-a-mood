@@ -17,7 +17,7 @@ This project is a part of data science capstone project at MADS, University of M
 - [Contributors](#contributors)
 
 ## Project Overview
-This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user inputs and specific lines of song lyrics, as well as, a 3D network that allows users to explore similar songs with topics on the level of the overall lyrics. Users can play with Streamlit App at [Spot-A-Mood](https://siads699-fa22-spot-a-mood.streamlit.app/) link here.
+This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user inputs and specific lines of song lyrics, as well as, a 3D network that allows users to explore similar songs with topics on the level of the overall lyrics. Users can play with Streamlit App at [Spot-A-Mood](https://huggingface.co/spaces/UMich-siads699-fa22-spotamood/spotamood) hugging face link here.
 
 The project will rely on an information retrieval architecture to encode user input (image/ text) and song lyrics documents based on pre-trained and fine-tuned Bidirectional Encoder Representations from Transformers (BERT) models using the Sentence Transformer (Reimers, 2022) Python framework.
 

@@ -11,4 +11,8 @@ cleaned_songs.csv
 ./pickle_objects
 __pycache__
 charts.csv
+<<<<<<< HEAD
 pickle_objects_viz/
+=======
+#pickle_objects/
+>>>>>>> 477701c39fd1b49f5a02e6a0db957dd3992594ee

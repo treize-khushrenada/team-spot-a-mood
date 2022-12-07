@@ -1,2 +1,3 @@
 #### Models Evaluation
 
+Since our web application is based on the streamlit engine, we cannot store users response data of how relevant the recommended songs are. So it is a challenge to verify the accuracy of the information retrieval architecture. From recommendation from our project supervisor, we created 6 different personas with pre-concieve query and expected results based on the query. With this we can manually score the recommended songs using the pre-concieve personas. Based on the songs binary score of relevant or not-relevant, 
