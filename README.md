@@ -94,10 +94,9 @@ we created a pair set of lyrics and annotations for each song extracted from the
 7.  	Yinhan Liu, M. O. (2019, Jul 26). RoBERTa: A Robustly Optimized BERT Pretraining Approach. From Arxiv: https://arxiv.org/abs/1907.11692
 8.      Briggs, J. (2021). NLP similarity metrics | towards data science. Similarity Metrics in NLP, from https://towardsdatascience.com/similarity-metrics-in-nlp-acc0777e234c
 
-~~#(pending edit): Project statement: your report explains the problem you attempted to solve at a level appropriate for a broad audience.
+~~#(pending edit): Project statement: your report explains the problem you attempted to solve at a level appropriate for a broad audience.~~
 
 #(pending edit): Statement of work: your report contains a statement identifying the contributions of each team member.
-Statement of work, Project statement
 
 #(pending edit): An appendix: Show us what you left out. Create an appendix to describe any other efforts you made that did not get included in the main report. 
 
