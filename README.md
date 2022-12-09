@@ -78,7 +78,7 @@ With all the embeddings generated from the models, a K-nearest neighbor model (K
 We will incorporate compositional similarity scores in the ranked results, including overall song similarity score using average similarity from lyrics lines-user query pairs, as well as the scores of individual lines. To make the average similarity score more sensitive to sentences that are highly similar to a user query, we have made a function to penalize lines with low similarity scores.
 
 ***Fine-Tuned Model:*** 
-
+@Rodolfo please update here
 
 
 ## Contributors
