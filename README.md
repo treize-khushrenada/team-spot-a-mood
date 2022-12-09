@@ -79,6 +79,7 @@ We will incorporate compositional similarity scores in the ranked results, inclu
 
 ***Fine-Tuned Model:*** 
 @Rodolfo please update here
+
 we created a pair set of lyrics and annotations for each song extracted from the Genius API, which we then used it to fine-tuned the pre-trained model. Annotations from the community were used in understanding that this will help the model expand its scope of lyrics comprehension. We expected this fine-tuned model to produce new embeddings for the same songs set as pre-trained models so that we can compare the performance of the recommendations of the two models as can be seen in the evaluation result. More details on evaluation results can be found under the [Evaluation](https://github.com/treize-khushrenada/team-spot-a-mood/blob/main/App/pages/evaluation.md) section.
 
 ## Contributors
