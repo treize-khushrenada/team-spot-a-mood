@@ -17,7 +17,9 @@ This project is a part of data science capstone project at MADS, University of M
 - [Contributors](#contributors)
 
 ## Project Overview
-This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user inputs and specific lines of song lyrics, as well as, a 3D network that allows users to explore similar songs with topics on the level of the overall lyrics. Users can play with Streamlit App at [Spot-A-Mood](https://huggingface.co/spaces/UMich-siads699-fa22-spotamood/spotamood) hugging face link here.
+This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user text/image inputs and specific lines of song lyrics, as well as, a 2D network that allows users to explore similar songs with topics on the level of the overall lyrics. Top 10 songs with relevant lyrics results and graph showing showing adjacent lyrics lines are deliverd upon each user query. The tool can serve a broad audience who would like to find songs that match certain visual/textual queries, with specific lines that act like a punchline with respect to the query. 
+
+Users can play with our Streamlit App at [Spot-A-Mood](https://huggingface.co/spaces/UMich-siads699-fa22-spotamood/spotamood) hugging face link here. 
 
 The project will rely on an information retrieval architecture to encode user input (image/ text) and song lyrics documents based on pre-trained and fine-tuned Bidirectional Encoder Representations from Transformers (BERT) models using the Sentence Transformer (Reimers, 2022) Python framework.
 
@@ -76,12 +78,6 @@ We will incorporate compositional similarity scores in the ranked results, inclu
 - annotation text and the respective lyrics text portion should have high similarity
 - lyrics text with same artist/ same song-writer to have high similarity
 
-## blog post outline:
-1. motivation and overview: Improve media curation experience with semantically sensitive recommendation algorithms
-2. recommender system: input/output relationships and ranking algorithm/ any related models and data
-3. content affinity representation: semantic textual similarity/ nlp algorithms/ any related models and data
-4. tooling: from notebook to an interactive tool/ any related technologies and services
-
 ## Generating similarity:
 
 - lyrics can be a large input sequence (https://www.sbert.net/examples/applications/computing-embeddings/README.html#input-sequence-length) - should consider per line of per verse(https://huggingface.co/blog/playlist-generator#sentence-transformers-embeddings-and-semantic-search)
@@ -99,7 +95,7 @@ We will incorporate compositional similarity scores in the ranked results, inclu
 7.  	Yinhan Liu, M. O. (2019, Jul 26). RoBERTa: A Robustly Optimized BERT Pretraining Approach. From Arxiv: https://arxiv.org/abs/1907.11692
 8.      Briggs, J. (2021). NLP similarity metrics | towards data science. Similarity Metrics in NLP, from https://towardsdatascience.com/similarity-metrics-in-nlp-acc0777e234c
 
-#(pending edit): Project statement: your report explains the problem you attempted to solve at a level appropriate for a broad audience.
+~~#(pending edit): Project statement: your report explains the problem you attempted to solve at a level appropriate for a broad audience.
 
 #(pending edit): Statement of work: your report contains a statement identifying the contributions of each team member.
 Statement of work, Project statement
