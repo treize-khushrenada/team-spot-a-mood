@@ -79,9 +79,12 @@ With all the embeddings generated from the models, a K-nearest neighbor model (K
 We will incorporate compositional similarity scores in the ranked results, including overall song similarity score using average similarity from lyrics lines-user query pairs, as well as the scores of individual lines. To make the average similarity score more sensitive to sentences that are highly similar to a user query, we have made a function to penalize lines with low similarity scores.
 
 ***Fine-Tuned Model:*** 
-@Rodolfo please update here
 
-we created a pair set of lyrics and annotations for each song extracted from the Genius API, which we then used it to fine-tuned the pre-trained model. Annotations from the community were used in understanding that this will help the model expand its scope of lyrics comprehension. We expected this fine-tuned model to produce new embeddings for the same songs set as pre-trained models so that we can compare the performance of the recommendations of the two models as can be seen in the evaluation result. 
+we created a pair set of lyrics and annotations for each song extracted from the Genius API, which we then used to fine-tuned the pre-trained model. Annotations from the community were used in understanding that this will help the model expand its scope of lyrics comprehension. We expected this fine-tuned model to produce new embeddings for the same songs set as pre-trained models so that we can compare the performance of the recommendations of the two models as can be seen in the evaluation result.
+
+We used a Sentence Transformer model called all-distilroberta-v1 - better known as RoBERTa from the Hugging Face Hub; this model is an improvement on the original BERT model. The strategy is basically to remove the Next Sentence Prediction in BERT and insead introduce a dynamic masking so that the masked token changes during each epoch which focuses the model to learn to predict intentionally hidden meanings of the text. 
+
+Our pair set of lyrics are basically similar sentences without a label; this requires us to choose a suitable loss function that can be used with this data structure. Once we figured out the proper loss function, the fine-tuning tasks can be easily implemented assuming the right computing infrastructure is in place. We leveraged Google Colab Pro to run our fine-tuning. RoBERTa, just like BERT, requires a lot of computing resources; Colab allowed us to use GPU and High-RAM.
 
 ***Findings and conclusions:***
 
@@ -101,7 +104,7 @@ Although the lyrics content was sourced from an open communitiy, copryright issu
 [(Back to top)](#table-of-contents)
 
 1. Arthur: Recommendation algorithm development, Front end implementation for text and image searching; Research on embeding-based semantic similarity embeddings and results ranking.
-2. Rodolfo:
+2. Rodolfo: Research, implementation, and evaluation of Fine-tuning pre-trained model tasks.
 3. Poom (Miles) : Responsible for the data extraction from the songs API sources and data cleaning and preprocessing the lyrics embeddings. Also working on streamlit cluster visualizations as well as study and model pages.
 
 
