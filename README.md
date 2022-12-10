@@ -100,8 +100,8 @@ Although the lyrics content was sourced from an open communitiy, copryright issu
 ## Contributors
 [(Back to top)](#table-of-contents)
 
-1. Arthur
-2. Rudolfo
+1. Arthur: Recommendation algorithm development, Front end implementation for text and image searching; Research on embeding-based semantic similarity embeddings and results ranking.
+2. Rodolfo:
 3. Poom (Miles) : Responsible for the data extraction from the songs API sources and data cleaning and preprocessing the lyrics embeddings. Also working on streamlit cluster visualizations as well as study and model pages.
 
 
