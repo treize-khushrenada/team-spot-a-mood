@@ -14,7 +14,7 @@ This project is a part of data science capstone project at MADS, University of M
     - [Data Extraction and Preprocessing](#data-extraction-and-preprocessing)
     - [Information Retrieval Model](#information-retrieval-model)
     - [Fine-Tuned Model](#fine-tuned-model)
-- [Ethical Questions/ Concerns](#ethical-question-concerns)
+- [Ethical Questions/ Concerns](#ethical-question-/-concerns)
 - [Contributors](#contributors)
 
 ## Project Overview
