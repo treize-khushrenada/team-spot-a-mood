@@ -89,9 +89,13 @@ More details on evaluation results and conclusions can be found under the [Evalu
 
 ## Ethical Questions/ Concerns
 
+***Negative Reinforcement*** 
+
 First of all, an ethical challenge of recommendation algorithm would be the reinforcement of user intentions, which can put the users into a worse mood than they originally started with, or encouraging unethical behaviors, as similar content would be suggested to the users. We have addressed the concern by putting a disclaimer text in our app.
 
-Although the lyrics content was sourced from an open communitiy, copryright issues may still arise. Since we did not intend to provide full-text lyrics sharing and audio playback, only matched lyrics lines would be shown in the search results, users can discover the full audio/ textual content of the song through other media channels.
+***Music Content*** 
+
+Although the lyrics content was sourced from an open communitiy, copryright issues may still arise. Since we did not intend to provide full-text lyrics sharing and audio playback, only matched lyrics lines would be shown in the search results with credits to the Genius community, users can discover the full audio/ textual content of the song through other media channels.
 
 ## Contributors
 [(Back to top)](#table-of-contents)
