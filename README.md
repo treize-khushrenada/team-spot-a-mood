@@ -91,6 +91,12 @@ More details on evaluation results and conclusions can be found under the [Evalu
 
 ## Contributors
 [(Back to top)](#table-of-contents)
+
+1. Arthur
+2. Rudolfo
+3. Poom (Miles) : Responsible for the data extraction from the songs API sources and data cleaning and preprocessing the lyrics embeddings. Also working on streamlit cluster visualizations as well as study and model pages.
+
+
 ## Resources
 [(Back to top)](#table-of-contents)
 1.      Lamere, P. (2022, Jun 26). Spotipy. From Read the Docs: https://spotipy.readthedocs.io/en/2.21.0/
