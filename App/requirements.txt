@@ -1,6 +1,7 @@
 tqdm
 numpy
 pandas
+altair
 matplotlib
 scikit-learn
 scipy
