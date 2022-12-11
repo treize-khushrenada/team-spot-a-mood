@@ -31,7 +31,7 @@ Our recommendation generation components and related visualizations will be inte
 [(Back to top)](#table-of-contents)
 *Project status* **ACTIVE**\
 \
-![](App_stcloud/assets/Spot-A-Mood-Pipeline.png)
+![](App/assets/Spot-A-Mood-Pipeline.png)
 ## Getting Started
 [(Back to top)](#table-of-contents)
 To start learning more about our project with our app, run the following steps
@@ -84,7 +84,7 @@ we created a pair set of lyrics and annotations for each song extracted from the
 
 ***Findings and conclusions:***
 
-![](App_stcloud/assets/model_eval.jpg)
+![](App/assets/model_eval.jpg)
 The relevant score based on the recommendations for each personas can be found [HERE](https://docs.google.com/spreadsheets/d/14-rDjElKSgE7tY9WPnVKfQh8Xt4Wmcwfw1W3DnsS6SU/edit#gid=869230475)). The result shown in the table above indicated that the fine-tuned model performed worse than the pre-trained RoBerta model. Based on our limited number of songs and annotation pair of 1000 songs, it is possible the lyrics might be emphasizing some semantic meanings more than others. With this small training set, it can consequently lead to overfitting of the model trying to incorporate every semantic on the lyrics and annotation pairs (Espejel, 2022). Another explanation is that the lyrics and annotation pairs from the Genius API, which is community curated content, are not necessarily imply a match in the meanings. This would cause the fine-tuned model to learn unrelated pairs of meanings which result in poor embeddings. This can somewhat been seen in the clustering of the fine-tuned model, where the query embedding is far off from the cluster.
 
 ## Ethical Questions/ Concerns
