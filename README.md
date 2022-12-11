@@ -18,7 +18,7 @@ This project is a part of data science capstone project at MADS, University of M
 - [Contributors](#contributors)
 
 ## Project Overview
-This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user text/image inputs and specific lines of song lyrics, as well as, a 2D network that allows users to explore similar songs with topics on the level of the overall lyrics. Top 10 songs with relevant lyrics results and graph showing showing adjacent lyrics lines are deliverd upon each user query. The tool can serve a broad audience who would like to find songs that match certain visual/textual queries, with specific lines that act like a punchline with respect to the query. 
+This project aims to provide a new musical recommendation tool driven by semantic textual similarities between user text/image inputs and specific lines of song lyrics, as well as, a 2D network that allows users to explore similar songs with topics on the level of the overall lyrics. Top 10 songs with relevant lyrics results and graph showing adjacent lyrics lines are deliverd upon each user query. The tool can serve a broad audience who would like to find songs that match certain visual/textual queries, with specific lines that act like a punchline with respect to the query. 
 
 Users can play with our Streamlit App at [Spot-A-Mood](https://huggingface.co/spaces/UMich-siads699-fa22-spotamood/spotamood) hugging face link here. 
 
