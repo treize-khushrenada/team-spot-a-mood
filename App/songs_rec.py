@@ -34,13 +34,13 @@ def lyrics_id_mapping(res_df, arr_lyrics_idx):
     return res_df
 
 # Suppress utterances which have low similarity scores
-def score_low_sim_weighting(df, threshold = 0.9, weight_low_sim = 1):
+def score_low_sim_weighting(df, threshold = 0.6, weight_low_sim = 0.5):
     df['score_weighted'] = df['score'].apply(lambda x: x * weight_low_sim if x < threshold else x)
     return df
 
-# Re-rank on songs level based on average lyrics line scores
+# Re-rank on songs level based on the sum of lyrics line scores
 def songs_ranking(df_results_lyrics_mapped):
-    res = df_results_lyrics_mapped.groupby('song_idx')['score_weighted'].mean()
+    res = df_results_lyrics_mapped.groupby('song_idx')['score_weighted'].sum()
     res = res.sort_values(ascending=False)
     return res
 
@@ -74,8 +74,11 @@ def similar_songs_lyrics_ranked(df_results_songs, df_results_lyrics_mapped):
         song_score = df_results_songs['score'].loc[song_id]
         song_id = song_id
         df_lyrics_scores = lyrics_scores_lookup(song_id, df_results_lyrics_mapped)
+        # create tuple
+        t_lyrics = zip(df_lyrics_scores['lyrics_line'], df_lyrics_scores['score'])
+        # create dictionary for the unique lyrics lines
         d_lyrics = dict(zip(df_lyrics_scores['lyrics_line'], df_lyrics_scores['score']))
-        dict_object = {"song_id": song_id, "artist":song_artist, "song title":song_title, "song_score":song_score, "lyrics_scores":d_lyrics}
+        dict_object = {"song_id": song_id, "artist":song_artist, "song title":song_title, "song_score":song_score, "lyrics_scores":t_lyrics}
         result_list.append(dict_object)
     
     return result_list

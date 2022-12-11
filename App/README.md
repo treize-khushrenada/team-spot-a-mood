@@ -1,11 +1,11 @@
 ---
 title: Spotamood
-emoji: 🚀
+emoji: 📝📸🔍🎵
 colorFrom: blue
 colorTo: indigo
 sdk: streamlit
 sdk_version: 1.10.0
-app_file: app.py
+app_file: App.py
 pinned: false
 license: apache-2.0
 ---
