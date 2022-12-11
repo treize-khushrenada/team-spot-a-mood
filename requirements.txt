@@ -6,9 +6,10 @@ seaborn
 scikit-learn
 scipy
 streamlit
-sentence_transformers
+sentence-transformers
 lyricsgenius
 spotipy
 python-dotenv
 streamlit-aggrid
 yellowbrick
+altair
