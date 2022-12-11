@@ -14,6 +14,7 @@ This project is a part of data science capstone project at MADS, University of M
     - [Data Extraction and Preprocessing](#data-extraction-and-preprocessing)
     - [Information Retrieval Model](#information-retrieval-model)
     - [Fine-Tuned Model](#fine-tuned-model)
+- [Ethical Questions/ Concerns](#ethical-questions-concerns)
 - [Contributors](#contributors)
 
 ## Project Overview
@@ -78,12 +79,31 @@ With all the embeddings generated from the models, a K-nearest neighbor model (K
 We will incorporate compositional similarity scores in the ranked results, including overall song similarity score using average similarity from lyrics lines-user query pairs, as well as the scores of individual lines. To make the average similarity score more sensitive to sentences that are highly similar to a user query, we have made a function to penalize lines with low similarity scores.
 
 ***Fine-Tuned Model:*** 
-@Rodolfo please update here
 
-we created a pair set of lyrics and annotations for each song extracted from the Genius API, which we then used it to fine-tuned the pre-trained model. Annotations from the community were used in understanding that this will help the model expand its scope of lyrics comprehension. We expected this fine-tuned model to produce new embeddings for the same songs set as pre-trained models so that we can compare the performance of the recommendations of the two models as can be seen in the evaluation result. More details on evaluation results can be found under the [Evaluation](https://github.com/treize-khushrenada/team-spot-a-mood/blob/main/App/pages/evaluation.md) section.
+we created a pair set of lyrics and annotations for each song extracted from the Genius API, which we then used to fine-tuned the pre-trained model. Annotations from the community were used in understanding that this will help the model expand its scope of lyrics comprehension. We expected this fine-tuned model to produce new embeddings for the same songs set as pre-trained models so that we can compare the performance of the recommendations of the two models as can be seen in the evaluation result. More information can can found in the [Model](https://github.com/treize-khushrenada/team-spot-a-mood/blob/main/App/pages/model.md) section.
+
+***Findings and conclusions:***
+
+More details on evaluation results and conclusions can be found under the [Evaluation](https://github.com/treize-khushrenada/team-spot-a-mood/blob/main/App/pages/evaluation.md) section.
+
+## Ethical Questions/ Concerns
+
+***Negative Reinforcement*** 
+
+First of all, an ethical challenge of recommendation algorithm would be the reinforcement of user intentions, which can put the users into a worse mood than they originally started with, or encouraging unethical behaviors, as similar content would be suggested to the users. We have addressed the concern by putting a disclaimer text in our app.
+
+***Music Content*** 
+
+Although the lyrics content was sourced from an open communitiy, copryright issues may still arise. Since we did not intend to provide full-text lyrics sharing and audio playback, only matched lyrics lines would be shown in the search results with credits to the Genius community, users can discover the full audio/ textual content of the song through other media channels.
 
 ## Contributors
 [(Back to top)](#table-of-contents)
+
+1. Arthur: Recommendation algorithm development, Front end implementation for text and image searching; Research on embeding-based semantic similarity embeddings and results ranking.
+2. Rodolfo: Research, implementation, and evaluation of Fine-tuning pre-trained model tasks.
+3. Poom (Miles) : Responsible for the data extraction from the songs API sources and data cleaning and preprocessing the lyrics embeddings. Also working on streamlit cluster visualizations as well as study and model pages.
+
+
 ## Resources
 [(Back to top)](#table-of-contents)
 1.      Lamere, P. (2022, Jun 26). Spotipy. From Read the Docs: https://spotipy.readthedocs.io/en/2.21.0/
