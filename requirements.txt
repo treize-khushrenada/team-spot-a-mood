@@ -12,4 +12,4 @@ spotipy
 python-dotenv
 streamlit-aggrid
 yellowbrick
-altair
+altair<5
